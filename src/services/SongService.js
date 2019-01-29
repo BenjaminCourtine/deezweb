@@ -7,7 +7,7 @@ const instance = axios.create({
 });
 
 export default {
-  fetchBy(query, by, limit = 10) {
+  fetchBy(query, by, limit = null) {
     return instance.get('/search', {
       params: {
         q: query,
