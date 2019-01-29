@@ -29,20 +29,31 @@ export default {
     };
   },
   methods: {
+    getFavorits() {
+      return JSON.parse(localStorage.getItem('favoritsSongs'));
+    },
     addToFavorit() {
-      if (localStorage.getItem(this.songs.id)) {
-        localStorage.removeItem(this.songs.id);
+      if (!localStorage.getItem('favoritsSongs')) {
+        localStorage.setItem('favoritsSongs', JSON.stringify([]));
+      }
+      if (this.getFavorits().filter(song => song.id === this.songs.id).length > 0) {
+        const index = this.getFavorits().map(e => e.id).indexOf(this.songs.id);
+        const data = this.getFavorits();
+        data.splice(index, 1);
+        this.$emit('dislike', this.songs.id);
+        localStorage.removeItem('favoritsSongs');
+        localStorage.setItem('favoritsSongs', JSON.stringify(data));
         this.liked = 'far';
       } else {
-        localStorage.setItem(this.songs.id, JSON.stringify(this.songs));
-        this.liked = 'fas';
-      }
-      if (localStorage.getItem(this.songs.id)) {
+        const existing = this.getFavorits();
+        existing.push(this.songs);
+        localStorage.removeItem('favoritsSongs');
+        localStorage.setItem('favoritsSongs', JSON.stringify(existing));
         this.liked = 'fas';
       }
     },
     checkIsFav() {
-      if (localStorage.getItem(this.songs.id)) {
+      if (this.getFavorits() && this.getFavorits().filter(song => song.id === this.songs.id).length > 0) {
         this.liked = 'fas';
       } else {
         this.liked = 'far';
@@ -109,5 +120,9 @@ a {
 
 .favorit-btn {
   margin: 2%;
+}
+
+audio {
+  width: 100%;
 }
 </style>

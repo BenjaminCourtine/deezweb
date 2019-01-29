@@ -20,7 +20,7 @@
       </div>
     </form>
     <div v-if="songs" class="all-tracks" >
-        <TrackCard v-for="(item, index) in songs.data" :key="index" :songs="item" />
+        <TrackCard class="track" v-for="(item, index) in songs.data" :key="index" :songs="item" />
     </div>
     <div v-if="songs">
       <div v-if="songs.data.length == 0">
@@ -48,10 +48,8 @@ export default {
   },
   methods: {
     submit() {
-      SongService.fetchBy(this.title, this.searchBy, 3).then((songs) => {
+      SongService.fetchBy(this.title, this.searchBy, 9).then((songs) => {
         this.songs = songs;
-        console.log(this.songs.data); // eslint-disable-line
-        // console.log(this.searchBy); // eslint-disable-line
       });
     },
     favChange() {
@@ -97,8 +95,16 @@ form button {
 }
 
 .all-tracks {
-  display: flex;
-  justify-content: space-around;
+  /* display: flex;
+  justify-content: space-around; */
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 3%;
 }
 
+.track {
+  padding: 3%;
+  margin-bottom: 5%;
+  width: 27vw;
+}
 </style>
