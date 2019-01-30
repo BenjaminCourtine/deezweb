@@ -1,8 +1,11 @@
 <template>
   <div class="favorites">
     <h1>Vos musiques favorites</h1>
-    <div v-if="favoritsSongs" class="favorits-songs-container">
+    <div v-if="favoritsSongs.length > 0" class="favorits-songs-container">
       <TrackCard @dislike="removeFavorit" class="favorit-song" v-for="(item, index) in favoritsSongs" :key="index" :songs="item"/>
+    </div>
+    <div v-else>
+      <p>Aucun favoris dans votre liste ...</p>
     </div>
   </div>
 </template>
@@ -26,7 +29,7 @@ export default {
   methods: {
     removeFavorit(id) {
       this.favoritsSongs = this.favoritsSongs.filter(song => song.id !== id);
-    }
+    },
   },
 };
 </script>

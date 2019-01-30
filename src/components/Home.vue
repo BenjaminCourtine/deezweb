@@ -1,11 +1,12 @@
 <template>
   <div class="home">
     <h1>Bienvuenue sur Deezweb</h1>
-    <div v-if="favoritsSongs" class="random-favorit-container">
+    <div v-if="randomSong" class="random-favorit-container">
       <TrackCard @dislike="removeFavorit" :songs="randomSong"/>
       <button class="random-btn" @click="changesong">
         <i class="fas fa-random"></i>
-        Choisir une autre musique</button>
+        Choisir une autre musique
+      </button>
     </div>
   </div>
 </template>
@@ -65,7 +66,7 @@ a {
 }
 
 .random-btn {
-  background-color: #4E01FF;
+  background-color: #42B983;
   border: none;
   color: white;
   text-align: center;

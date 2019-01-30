@@ -4,11 +4,21 @@
         href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
         integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
-    <h3 class="track-card-title"><b class="bold">Titre: </b>{{ songs.title }}</h3>
-    <div class="track-infos">
-      <div><b class="bold">Artiste: </b>{{ songs.artist.name }}</div>
-      <div><b class="bold">Album: </b>{{ songs.album.title }}</div>
+    <div class="infos-container">
+      <div>
+        <img :src="songs.album.cover" alt="">
+      </div>
+      <div>
+        <h3 class="track-card-title"><b class="bold">Titre: </b>{{ songs.title }}</h3>
+        <div><b class="bold">Artiste: </b>{{ songs.artist.name }}</div>
+        <div><b class="bold">Album: </b>{{ songs.album.title }}</div>
+      </div>
     </div>
+    <!-- <h3 class="track-card-title"><b class="bold">Titre: </b>{{ songs.title }}</h3> -->
+    <!-- <div class="track-infos"> -->
+      <!-- <div><b class="bold">Artiste: </b>{{ songs.artist.name }}</div>
+      <div><b class="bold">Album: </b>{{ songs.album.title }}</div> -->
+    <!-- </div> -->
     <audio controls :src="songs.preview" type="audio/mpeg" />
     <a href="#" class="favorit-btn" @click.prevent="addToFavorit">
       <i class="fa-heart" :class="updateFav" id="btn"></i>
@@ -53,7 +63,8 @@ export default {
       }
     },
     checkIsFav() {
-      if (this.getFavorits() && this.getFavorits().filter(song => song.id === this.songs.id).length > 0) {
+      if (this.getFavorits()
+          && this.getFavorits().filter(song => song.id === this.songs.id).length > 0) {
         this.liked = 'fas';
       } else {
         this.liked = 'far';

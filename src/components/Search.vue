@@ -1,6 +1,7 @@
 <template>
   <div class="search">
     <h1>Recherche</h1>
+    <p>Recherche un titre sur deezer en utilisant le formulaire suivant:</p>
     <form @submit.prevent="submit">
       <div class="inputs">
         <label>Titre: </label>
@@ -61,10 +62,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1 {
-  font-size: 24px;
-}
-
 h3 {
   margin: 40px 0 0;
 }
@@ -83,7 +80,7 @@ a {
 form {
     display: flex;
     width: 50%;
-    margin: 5% auto;
+    margin: 3% auto;
     justify-content: space-around;
     padding: 3%;
     border: 1px solid green;
